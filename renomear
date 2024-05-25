@@ -1,0 +1,30 @@
+import os
+
+def rename_files_in_folder(folder_path, start_number=1):
+    # Listar todos os arquivos na pasta
+    files = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+    
+    # Ordenar os arquivos para garantir a ordem consistente
+    files.sort()
+
+    # Renomear cada arquivo sequencialmente
+    for i, filename in enumerate(files, start=start_number):
+        # Obter a extensão do arquivo
+        file_extension = os.path.splitext(filename)[1]
+        
+        # Construir o novo nome do arquivo
+        new_name = f"{i}{file_extension}"
+        
+        # Caminhos completos para o arquivo antigo e novo
+        old_file = os.path.join(folder_path, filename)
+        new_file = os.path.join(folder_path, new_name)
+        
+        # Renomear o arquivo
+        os.rename(old_file, new_file)
+        print(f'{filename} renomeado para {new_name}')
+
+# Exemplo de uso
+folder_path = 'C:/Users/jorge/OneDrive/Documentos/GitHub/Pesquisa-ufpi/normalizadas'
+rename_files_in_folder(folder_path, start_number=291)
+
+print("Todos os arquivos foram renomeados com sucesso!")
